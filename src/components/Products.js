@@ -17,7 +17,6 @@ const Products = () => {
 
   const searchData = useSelector((state) => state.randomSearchData);
   const productsData = useSelector((state) => state.productsData);
-  const cartData = useSelector((state) => state.cartData);
 
   const addToCartBtn = (id) => {
     const cartProductItem = productsData.find((product) => product.id === id);

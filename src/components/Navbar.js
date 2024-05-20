@@ -12,7 +12,7 @@ import { FaHeart } from "react-icons/fa6";
 import { MdLocalShipping } from "react-icons/md";
 
 const navbarItems = [
-  { id: 1, title: "Home", icon: <IoMdHome />, path: "/" },
+  { id: 1, title: "Home", icon: <IoMdHome />, path: "/store-app" },
   { id: 2, title: "Wishlist", icon: <FaHeart />, path: "/wish-list" },
   { id: 3, title: "Cart", icon: <IoMdCart />, path: "/cart" },
   { id: 4, title: "Orders", icon: <MdLocalShipping />, path: "/orders" },

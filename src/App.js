@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className="App-container">
       <Routes>
-        <Route exact path="/" element={<Products />} />
+        <Route exact path="/store-app" element={<Products />} />
         <Route exact path="/wish-list" element={<WishList />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/orders" element={<Orders />} />
