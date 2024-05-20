@@ -1,13 +1,238 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media screen and (min-width: 992px) {
+  .navbar-bg-container {
+    background-color: #282c34;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+  }
+
+  .app-title {
+    background-color: #5ef0bf50;
+    color: #5ef0bf;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 30px;
+    padding: 0 12px;
+    border: 3px solid #5ef0bf;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 35%;
+  }
+
+  .search-input {
+    font-family: "caveats-regular";
+    font-size: 16px;
+    padding-left: 8px;
+    width: 400px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+  }
+
+  .search-btn {
+    background-color: #5f9ea0;
+    color: #7fffd4;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .search-btn:hover {
+    background-color: #7fffd4;
+    color: #5f9ea0;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+  }
+
+  .nav-item {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .nav-item:active {
+    color: #5ef0bf;
+  }
+
+  .nav-icon {
+    font-size: 18px;
+  }
+
+    .wish-list-bg-container,
+  .cart-bg-container,
+  .orders-bg-container {
+    padding: 100px 20px 20px 20px;
+  }
+
+  .products-data {
+    flex-wrap: wrap;
+    padding: 100px 20px 20px 20px;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .product-item {
+    background-color: #f8eaea;
+    margin-bottom: 20px;
+    padding: 12px;
+    width: 300px;
+    border-radius: 6px;
+  }
+
+  .product-img {
+    align-self: center;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 8px;
+  }
+
+  .product-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .product-price {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .product-rating-container {
+    width: 250px;
+    margin-bottom: 8px;
+  }
+
+  .product-rating,
+  .product-rating-count {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .cart-wishlist-button-container {
+    width: 250px;
+    margin-bottom: 8px;
+  }
+
+  .btn {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    font-size: 17px;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .cart-btn {
+    background-color: #effa20;
+  }
+
+  .wishlist-btn {
+    background-color: #e9967a;
+  }
+
+  .product-order-btn {
+    background-color: #3dee98;
+    font-weight: 600;
+    width: 250px;
+  }
+
+  .no-product-data {
+    color: #282c34;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 30px;
+  }
+
+  .cart-item {
+    background-color: #caeeee;
+    margin-bottom: 10px;
+    padding: 20px 50px;
+    width: 75%;
+    border-radius: 10px;
+  }
+
+  .cart-item-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .cart-item-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .cart-item-price {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .quantity-block {
+    width: 100px;
+  }
+
+  .quantity-number {
+    color: #e73a3a;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 12px;
+  }
+
+  .add-quatity-btn,
+  .remove-quatity-btn {
+    background-color: #86b8ba;
+    font-size: 20px;
+    font-weight: 600;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 6px;
+  }
+
+  .cart-order-remove-btn {
+    height: 130px;
+  }
+
+  .cart-item-order-btn,
+  .cart-item-save-btn,
+  .cart-item-remove-btn {
+    width: 120px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .cart-item-order-btn {
+    background-color: #3dee98;
+  }
+
+  .cart-item-save-btn {
+    background-color: #e6e628;
+  }
+
+  .cart-item-remove-btn {
+    background-color: #e73a3a;
+  }
 }
