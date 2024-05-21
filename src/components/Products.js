@@ -24,8 +24,7 @@ const Products = () => {
   };
 
   const addToOrdersBtn = (id) => {
-    const ordersProductItem = productsData.find((product) => product.id === id);
-    dispatch(addItemToOrders(ordersProductItem));
+    dispatch(addItemToOrders(id));
   };
 
   return (
@@ -53,6 +52,7 @@ const Products = () => {
                   key={product.id}
                   product={product}
                   addToCart={addToCartBtn}
+                  addToOrders={addToOrdersBtn}
                 />
               ))}
             </>
