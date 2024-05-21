@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductsData,
   addItemToCart,
+  addItemToOrders,
 } from "../redux/Features/productSlice";
 
 import Navbar from "./Navbar";
@@ -19,12 +20,16 @@ const Products = () => {
   const productsData = useSelector((state) => state.productsData);
 
   const addToCartBtn = (id) => {
-    const cartProductItem = productsData.find((product) => product.id === id);
-    dispatch(addItemToCart(cartProductItem));
+    dispatch(addItemToCart(id));
+  };
+
+  const addToOrdersBtn = (id) => {
+    const ordersProductItem = productsData.find((product) => product.id === id);
+    dispatch(addItemToOrders(ordersProductItem));
   };
 
   return (
-    <>
+    <div className="products-bg-container">
       <Navbar />
       {searchData.length === 0 ? (
         <ul className="products-data flex flex-row justify-around">
@@ -33,6 +38,7 @@ const Products = () => {
               key={product.id}
               product={product}
               addToCart={addToCartBtn}
+              addToOrders={addToOrdersBtn}
             />
           ))}
         </ul>
@@ -42,7 +48,7 @@ const Products = () => {
             <p className="no-product-data">No Search Results!!!</p>
           ) : (
             <>
-              {searchData[0]?.map((product) => (
+              {searchData?.map((product) => (
                 <ProductItem
                   key={product.id}
                   product={product}
@@ -53,7 +59,7 @@ const Products = () => {
           )}
         </ul>
       )}
-    </>
+    </div>
   );
 };
 

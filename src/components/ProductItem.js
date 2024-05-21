@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductItem = ({ product, addToCart }) => {
+const ProductItem = ({ product, addToCart, addToOrders }) => {
   const { id, image, title, price, rating } = product;
   const { rate, count } = rating;
 
@@ -15,14 +15,16 @@ const ProductItem = ({ product, addToCart }) => {
           Reviewed: {count} Customers
         </p>
       </div>
-      <div className="mt-auto">
-        <div className="cart-wishlist-button-container flex flex-row justify-between">
-          <button className="btn cart-btn" onClick={() => addToCart(id)}>
-            Add to Cart
-          </button>
-          <button className="btn wishlist-btn">Add to WhishList</button>
-        </div>
-        <button className="btn product-order-btn text-center">ORDER NOW</button>
+      <div className="cart-order-button-container flex flex-col justify-between items-center mt-auto">
+        <button className="btn product-cart-btn" onClick={() => addToCart(id)}>
+          Add to Cart
+        </button>
+        <button
+          className="btn product-order-btn text-center"
+          onClick={() => addToOrders(id)}
+        >
+          ORDER NOW
+        </button>
       </div>
     </li>
   );

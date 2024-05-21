@@ -12,10 +12,22 @@ import { FaHeart } from "react-icons/fa6";
 import { MdLocalShipping } from "react-icons/md";
 
 const navbarItems = [
-  { id: 1, title: "Home", icon: <IoMdHome />, path: "/store-app" },
-  { id: 2, title: "Wishlist", icon: <FaHeart />, path: "/wish-list" },
-  { id: 3, title: "Cart", icon: <IoMdCart />, path: "/cart" },
-  { id: 4, title: "Orders", icon: <MdLocalShipping />, path: "/orders" },
+  { id: 1, title: "Home", icon: <IoMdHome />, path: "/store-app", count: "" },
+  {
+    id: 2,
+    title: "Wishlist",
+    icon: <FaHeart />,
+    path: "/wish-list",
+    count: "",
+  },
+  { id: 3, title: "Cart", icon: <IoMdCart />, path: "/cart", count: 0 },
+  {
+    id: 4,
+    title: "Orders",
+    icon: <MdLocalShipping />,
+    path: "/orders",
+    count: "",
+  },
 ];
 
 const Navbar = () => {
@@ -23,14 +35,17 @@ const Navbar = () => {
 
   const search = useSelector((state) => state.search);
   const productsData = useSelector((state) => state.productsData);
+  const cartDataCount = useSelector((state) => state.cartData).length;
 
   const onSubmitSearch = (e) => {
     e.preventDefault();
 
-    const fill = productsData.filter((product) => product.title.toLowerCase().startsWith(search))
-    dispatch(addRandomSearchData(fill));
+    const fill = productsData.filter((product) =>
+      product.title.toLowerCase().startsWith(search)
+    );
+    dispatch(addRandomSearchData(...fill));
   };
-  
+
   if (search.length === 0) {
     dispatch(productSearch(""));
     dispatch(clearRandomSearchData());
@@ -59,11 +74,16 @@ const Navbar = () => {
 
       <ul className="nav-items">
         {navbarItems.map((tab) => (
-          <li className="nav-item flex flex-row items-center" key={tab.id}>
+          <li className= {`nav-item flex flex-row items-center`} key={tab.id}>
             {tab.icon}
             <Link to={tab.path} className="ml-2">
               {tab.title}
             </Link>
+            {cartDataCount > 0 && tab.title === "Cart" ? (
+              <p className="cart-count ml-2.5">{cartDataCount}</p>
+            ) : (
+              ""
+            )}
           </li>
         ))}
       </ul>

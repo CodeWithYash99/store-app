@@ -40,11 +40,58 @@ const productSlice = createSlice({
     productSearch: (state, action) => {
       state.search = action.payload;
     },
-    addItemToCart: (state, action) => {
-      state.cartData.push(action.payload);
-    },
     addRandomSearchData: (state, action) => {
-      state.randomSearchData.push(action.payload);      
+      state.randomSearchData.push(action.payload);
+    },
+    addItemToCart: (state, action) => {
+      const cartItem = state.productsData.find((p) => p.id === action.payload);
+      state.cartData.push(cartItem);
+    },
+    addItemToWishList: (state, action) => {
+      const cartItem = state.cartData.filter(
+        (item) => item.id !== action.payload
+      );
+      state.cartData.splice(0, state.cartData.length);
+      state.cartData.push(...cartItem);
+
+      const saveItem = state.productsData.find((p) => p.id === action.payload);
+      state.wishListData.push(saveItem);
+    },
+    addItemToOrders: (state, action) => {
+      const orderItem = state.productsData.find((p) => p.id === action.payload);
+      state.ordersData.push(orderItem);
+
+      const cartItem = state.cartData.filter((p) => p.id !== action.payload);
+      state.cartData.splice(0, state.cartData.length);
+      state.cartData.push(...cartItem);
+    },
+    removeItemFromCart: (state, action) => {
+      const cartItem = state.cartData.filter(
+        (item) => item.id !== action.payload
+      );
+      state.cartData.splice(0, state.cartData.length);
+      state.cartData.push(...cartItem);
+
+      const saveItem = state.wishListData.filter(
+        (item) => item.id !== action.payload
+      );
+      state.wishListData.splice(0, state.wishListData.length);
+      state.wishListData.push(...saveItem);
+    },
+    removeItemFromWishList: (state, action) => {
+      const saveItem = state.wishListData.find((p) => p.id === action.payload);
+      state.cartData.push(saveItem);
+
+      const filterData = state.wishListData.filter(
+        (p) => p.id !== action.payload
+      );
+      state.wishListData.splice(0, state.wishListData.length);
+      state.wishListData.push(...filterData);
+    },
+    removeItemFromOrders: (state, action) => {
+      const orderItem = state.ordersData.filter((p) => p.id !== action.payload);
+      state.ordersData.splice(0, state.ordersData.length);
+      state.ordersData.push(...orderItem);
     },
     clearRandomSearchData: (state) => {
       state.randomSearchData.pop();
@@ -55,7 +102,12 @@ const productSlice = createSlice({
 export const {
   productSearch,
   addItemToCart,
+  addItemToWishList,
+  addItemToOrders,
   addRandomSearchData,
+  removeItemFromCart,
+  removeItemFromWishList,
+  removeItemFromOrders,
   clearRandomSearchData,
 } = productSlice.actions;
 
