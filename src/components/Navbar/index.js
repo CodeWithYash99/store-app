@@ -5,11 +5,14 @@ import {
   productSearch,
   addRandomSearchData,
   clearRandomSearchData,
-} from "../redux/Features/productSlice";
+} from "../../redux/Features/productSlice";
 
+import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdHome, IoMdCart } from "react-icons/io";
 import { FaHeart } from "react-icons/fa6";
 import { MdLocalShipping } from "react-icons/md";
+
+import "./index.css";
 
 const navbarItems = [
   { id: 1, title: "Home", icon: <IoMdHome />, path: "/store-app", count: "" },
@@ -56,10 +59,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar-bg-container">
-      <h1 className="app-title">STORE</h1>
+    <nav className="navbar-bg-container flex flex-row justify-between items-center">
+      <h1 className="app-logo">STORE</h1>
 
-      <form className="input-container" onSubmit={onSubmitSearch}>
+      <form
+        className="input-container flex flex-row justify-around items-center"
+        onSubmit={onSubmitSearch}
+      >
         <input
           type="text"
           placeholder="Search here..."
@@ -72,9 +78,45 @@ const Navbar = () => {
         </button>
       </form>
 
-      <ul className="nav-items">
+      <div className="small-navbar flex flex-col items-center">
+        <input className="menu-check-box" type="checkbox" id="hamburger" />
+        <label className="hamburger-icon" htmlFor="hamburger">
+          <GiHamburgerMenu />
+        </label>
+
+        <div className="small-nav-container flex flex-col items-center">
+          <form
+            className="small-form-container flex flex-col items-center"
+            onSubmit={onSubmitSearch}
+          >
+            <input
+              type="text"
+              placeholder="Search here..."
+              className="small-search-input"
+              value={search}
+              onChange={onChangeSearch}
+            />
+            <button className="small-search-btn" type="submit">
+              Go
+            </button>
+          </form>
+
+          <ul className="small-menu flex flex-col justify-around">
+            {navbarItems.map((tab) => (
+              <li key={tab.id} className="flex flex-row items-center">
+                  {tab.icon}
+                <Link to={tab.path} className="flex flex-row items-center ml-2">
+                  {tab.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <ul className="nav-container flex flex-row justify-around">
         {navbarItems.map((tab) => (
-          <li className= {`nav-item flex flex-row items-center`} key={tab.id}>
+          <li className={`nav-item flex flex-row items-center`} key={tab.id}>
             {tab.icon}
             <Link to={tab.path} className="ml-2">
               {tab.title}
@@ -87,7 +129,7 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 };
 
